@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TP's Go Bitcoin Tests</title>
+	<meta name="description" content="Bitcoin Go Unit Tester" />
+	<meta name="author" content="TP">
+<meta name="keywords" content=" go, golang, Google go, go programming language, network programming, distributed computing, Bitcoin, test, unit, unit test, free, net, client"/>
+<link rel="apple-touch-icon" href="icons/iCon57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="icons/iCon72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="icons/iCon114.png" />
+<link REL="SHORTCUT ICON" HREF="icons/favicon.ico">
+ 	<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement("script"), t = document.getElementsByTagName("script")[0];
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "http://api.flattr.com/js/0.6/load.js?mode=auto";
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25951652-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<div style="position: fixed; top: 0px; width:200px; height: 100%;">
+		<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-5720320439509055";
+			/* GoBitTest */
+			google_ad_slot = "1692224642";
+			google_ad_width = 160;
+			google_ad_height = 600;
+			//-->
+		</script>
+		<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+
+	<div style="position: absolute; left: 200px; top: 0px; width: 640px;">
+	<h2>TP's Go Bitcoin Tests - Private keys</h2>
+	<p><a href="/"><- Go back.</a></p>
+	<p style="color:red">{{.Error}}</p>
+	<h3>Wallet import format to private key</h3>
+	<form method="POST" action="/PrivateKey">
+		<input type='hidden' name='Random' value="Random" />
+		<input type="submit" id="Random" value="Random"/>
+	</form>
+	<p>1 - Wallet import format</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' name='wif' size='70' value="{{index .WIF2Priv 0}}" />
+		<input type="submit" id="wifPost" value="Send"/>
+	</form>
+	<p>2 - Converting WIF as Base58 string to byte array</p>
+	<form>
+		<input type='text' size='100' value="{{index .WIF2Priv 1}}" />
+	</form>
+	<p>3 - Dropping last 4 checksum bytes</p>
+	<form>
+		<input type='text' size='90' value="{{index .WIF2Priv 2}}" />
+	</form>
+	<p>4 - Dropping first byte. This is the private key</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' size='90' value="{{index .WIF2Priv 3}}" />
+		<input type="submit" id="privatePost" value="Send"/>
+	</form>
+	
+	
+	<h3>Private key to wallet import format</h3>
+	<form method="POST" action="/PrivateKey">
+		<input type='hidden' name='Random' value="Random" />
+		<input type="submit" id="Random" value="Random"/>
+	</form>
+	<p>1 - Private key</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' name='private2' size='90' value="{{index .Priv2WIF 0}}" />
+		<input type="submit" id="privatePost2" value="Send"/>
+	</form>
+	<p>2 - Add 0x80 byte to the front</p>
+	<form>
+		<input type='text' size='90' value="{{index .Priv2WIF 1}}" />
+	</form>
+	<p>3 - SHA-256 hash of 2</p>
+	<form>
+		<input type='text' size='90' value="{{index .Priv2WIF 2}}" />
+	</form>
+	<p>4 - SHA-256 hash of 3</p>
+	<form>
+		<input type='text' size='90' value="{{index .Priv2WIF 3}}" />
+	</form>
+	<p>5 - First 4 bytes of 4, this is the checksum</p>
+	<form>
+		<input type='text' size='10' value="{{index .Priv2WIF 4}}" />
+	</form>
+	<p>6 - Adding 5 at the end of 2</p>
+	<form>
+		<input type='text' size='100' value="{{index .Priv2WIF 5}}" />
+	</form>
+	<p>7 - Base58 encoding of 6</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' name='wif2' size='70' value="{{index .Priv2WIF 6}}" />
+		<input type="submit" id="wifPost2" value="Send"/>
+	</form>
+	
+	
+	
+	<h3>WIF checksum checking</h3>
+	<form method="POST" action="/PrivateKey">
+		<input type='hidden' name='Random' value="Random" />
+		<input type="submit" id="Random" value="Random"/>
+	</form>
+	<p>1 - Wallet import format</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' name='wif3' size='70' value="{{index .WIFChecksum 0}}" />
+		<input type="submit" id="wifPost3" value="Send"/>
+	</form>
+	<p>2 - Converting WIF as Base58 string to byte array</p>
+	<form>
+		<input type='text' size='100' value="{{index .WIFChecksum 1}}" />
+	</form>
+	<p>3 - Dropping last 4 checksum bytes from 2</p>
+	<form>
+		<input type='text' size='90' value="{{index .WIFChecksum 2}}" />
+	</form>
+	<p>4 - SHA-256 hash of 3</p>
+	<form>
+		<input type='text' size='90' value="{{index .WIFChecksum 3}}" />
+	</form>
+	<p>5 - SHA-256 hash of 4</p>
+	<form>
+		<input type='text' size='90' value="{{index .WIFChecksum 4}}" />
+	</form>
+	<p>6 - First 4 bytes of 5, this is the calculated checksum</p>
+	<form>
+		<input type='text' size='10' value="{{index .WIFChecksum 5}}" />
+	</form>
+	<p>7 - Take the last 4 bytes of 2, this is the original checksum</p>
+	<form>
+		<input type='text' size='10' value="{{index .WIFChecksum 6}}" />
+	</form>
+	<p>Are 6 and 7 identical? Does 2 start with a 0x80 byte? If so, success!</p>
+{{if .UseMinikey}}
+	<h3>Mini private key format decoding</h3>
+	<form method="POST" action="/PrivateKey">
+		<input type='hidden' name='Random' value="RandomSHA256" />
+		<input type="submit" id="Random" value="Random SHA256"/>
+	</form>
+	<form method="POST" action="/PrivateKey">
+		<input type='hidden' name='Random' value="RandomPBKDF2" />
+		<input type="submit" id="Random" value="Random PBKDF2"/>
+	</form>
+	
+	<p>1 - Mini private key format</p>
+	<form method="POST" action="/PrivateKey">
+		<input type='text' name='Mini' size='70' value="{{index .Minikey 0}}" />
+		<input type="submit" id="MiniPost" value="Send"/>
+	</form>
+	<p>2 - Take the first letter from 1. If it is not "S", the key in invalid.</p>
+	<form>
+		<input type='text' size='3' value="{{index .Minikey 1}}" />
+	</form>
+	<p>3 - Add "?" at the end of 1</p>
+	<form>
+		<input type='text' size='70' value="{{index .Minikey 2}}" />
+	</form>
+	<p>4 - SHA-256 hash of 3 as a string</p>
+	<form>
+		<input type='text' size='90' value="{{index .Minikey 3}}" />
+	</form>
+	<p>5 - Take the first byte from 4. If it is 0x00, go to 6a. If it is 0x01, go to 6b. If it it anything else, the key is not valid.</p>
+	<form>
+		<input type='text' size='3' value="{{index .Minikey 4}}" />
+	</form>
+	<p>6a - SHA-256 hash of 1 as a string. This is the private key. Operation is successful, end.</p>
+	<form>
+		<input type='text' size='90' value="{{index .Minikey 5}}" />
+	</form>
+	<p>6b - Take the second byte from 4. If it is greater than 0x40, the key is not valid.</p>
+	<form>
+		<input type='text' size='3' value="{{index .Minikey 6}}" />
+	</form>
+	<p>7 - Calculate 2 ^ (n/4), where n is equal to byte from 6b. Round it to the nearest integer.</p>
+	<form>
+		<input type='text' size='3' value="{{index .Minikey 7}}" />
+	</form>
+{{end}}
+	
+	<div style="position: relative; top: 50px;">
+	<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://gobittest.appspot.com/">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e71f9fb5d9e1831"></script>
+<!-- AddThis Button END -->
+
+	<p>If you like this test page, please consider sharing or sending some Bitcoins over to:</p>
+	<p><a href= "bitcoin:1G5Tjyznf4hmWoStygje9h2u1Y7rFBjtmS?amount=0.1&label=GoBitTest donation">1G5Tjyznf4hmWoStygje9h2u1Y7rFBjtmS</a></p>
+	<br><br></div>
+	</div>
+	
+	
+</body>
+</html>

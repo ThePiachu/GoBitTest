@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>TP's Go Bitcoin Tests</title>
+	<meta name="description" content="Bitcoin Go Unit Tester" />
+	<meta name="author" content="TP">
+<meta name="keywords" content=" go, golang, Google go, go programming language, network programming, distributed computing, Bitcoin, test, unit, unit test, free, net, client"/>
+<link rel="apple-touch-icon" href="icons/iCon57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="icons/iCon72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="icons/iCon114.png" />
+<link REL="SHORTCUT ICON" HREF="icons/favicon.ico">
+ 	<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement("script"), t = document.getElementsByTagName("script")[0];
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "http://api.flattr.com/js/0.6/load.js?mode=auto";
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25951652-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+	<div style="position: fixed; top: 0px; width:200px; height: 100%;">
+		<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-5720320439509055";
+			/* GoBitTest */
+			google_ad_slot = "1692224642";
+			google_ad_width = 160;
+			google_ad_height = 600;
+			//-->
+		</script>
+		<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+	<div style="position: absolute; left: 200px; top: 0px; width: 800px;">
+	<h2>TP's Go Bitcoin Tests - Vanity Addresses - Multiplication</h2>
+	<p><a href="/"><- Go back.</a></p>
+	<p style="color:red">{{.Error}}</p>
+	
+	<form method="POST" action="/VanityMult">
+		<input type='hidden' name='Random' value="Random" />
+		<input type="submit" id="Random" value="Random"/>
+	</form>
+	
+	
+	<p>Generate from two private keys:</p>
+	<form method="POST" action="/VanityMult">
+		<input type='hidden' name='Private' value="Private" />
+		<input type='text' name='Private1' size='90' value="{{.Private1}}" /><br>
+		<input type='text' name='Private2' size='90' value="{{.Private2}}" /><br>
+		<input type="submit" id="private" value="Send"/><br>
+	</form>
+	<p>Generate from public and private key:</p>
+	<form method="POST" action="/VanityMult">
+		<input type='hidden' name='Public' value="Public" />
+		<input type='text' name='Public1' size='180' value="{{.Public1}}" /><br>
+		<input type='text' name='Private2' size='90' value="{{.Private2}}" /><br>
+		<input type="submit" id="public" value="Send"/><br>
+	</form>
+	
+	
+	
+	
+	
+	
+	<h3>Private key multiplication</h3>
+	<p>Multiplication of private keys:</p>
+	<p>{{.PrivateMult}}</p>
+	<p>Public key from the multiplication of private keys:</p>
+	<p>{{.PrivateMultPublic}}</p>
+	<p>Corresponding address:</p>
+	<p>{{.PrivateMultAddress}}</p>
+	
+	
+	<h3>Generation from public key</h3>
+	<p>Public key generated from a modified base point:</p>
+	<p>{{.Public2}}</p>
+	<p>Corresponding address:</p>
+	<p>{{.Public2Address}}</p>
+	<br>
+	{{.PrivateMultAddress}} =?= {{.Public2Address}}<br>
+
+	<div style="position: relative; top: 50px;">
+	<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="http://gobittest.appspot.com/">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e71f9fb5d9e1831"></script>
+<!-- AddThis Button END -->
+
+	<p>If you like this test page, please consider sharing or sending some Bitcoins over to:</p>
+	<p><a href= "bitcoin:1G5Tjyznf4hmWoStygje9h2u1Y7rFBjtmS?amount=0.1&label=GoBitTest donation">1G5Tjyznf4hmWoStygje9h2u1Y7rFBjtmS</a></p>
+	<br><br></div>
+	</div>
+	
+	
+</body>
+</html>
