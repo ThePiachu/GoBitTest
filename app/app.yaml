@@ -1,9 +1,10 @@
-application: gobittest
-version:     gobittest-2016-01-17
-runtime:     go
-api_version: go1
+#application: gobittest
+#version:     gobittest-2016-01-17
+#> gcloud app deploy app.yaml --no-promote --project gobittest -v gobittest-2020-06-15
+runtime:     go111
+#api_version: go1
 
 handlers:
 - url: /.*
-  script: _go_app
+  script: auto
   secure: optional

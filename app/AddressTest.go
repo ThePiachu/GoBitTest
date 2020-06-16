@@ -1,13 +1,16 @@
-package app
+package main
 
 import (
-	"appengine"
 	"crypto/rand"
+	"html/template"
+	"net/http"
+
+	"google.golang.org/appengine"
+
+	"github.com/ThePiachu/Go/Log"
 	"github.com/ThePiachu/Go/mymath"
 	"github.com/ThePiachu/Go/mymath/bitecdsa"
 	"github.com/ThePiachu/Go/mymath/bitelliptic"
-	"html/template"
-	"net/http"
 )
 
 type AddressDat struct {
@@ -84,7 +87,7 @@ func addressTest(w http.ResponseWriter, r *http.Request) {
 				address.Error = "Private key is not on curve"
 				AddressTestTemplate.Execute(w, address)
 			} else {
-				c.Errorf("Err ", err)
+				Log.Errorf(c, "Err ", err)
 				return
 			}
 		} else {
@@ -203,7 +206,7 @@ func addressTest(w http.ResponseWriter, r *http.Request) {
 		st8 := mymath.Str2Hex(r.FormValue("FullAddress"))
 		if len(st8) != 25 {
 			address.Error = "Invalid address length"
-			c.Debugf("%d", len(st8))
+			Log.Debugf(c, "%d", len(st8))
 		}
 
 		st3 := st8[1:21]
@@ -236,7 +239,7 @@ func addressTest(w http.ResponseWriter, r *http.Request) {
 		st8 := mymath.Base582Hex(st9)
 		if len(st8) != 25 {
 			address.Error = "Invalid address length"
-			c.Debugf("%d", len(st8))
+			Log.Debugf(c, "%d", len(st8))
 		}
 
 		st3 := st8[1:21]

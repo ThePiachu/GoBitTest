@@ -1,10 +1,13 @@
-package app
+package main
 
 import (
-	"appengine"
-	"github.com/ThePiachu/Go/mymath"
 	"html/template"
 	"net/http"
+
+	"google.golang.org/appengine"
+
+	"github.com/ThePiachu/Go/Log"
+	"github.com/ThePiachu/Go/mymath"
 )
 
 type ProofOfBurnDat struct {
@@ -36,17 +39,17 @@ func init() {
 
 func proofOfBurnTest(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	c.Infof("proofOfBurnTest")
+	Log.Infof(c, "proofOfBurnTest")
 	root := r.FormValue("Root")
 	filler := r.FormValue("Filler")
-	c.Infof("proofOfBurnTest - %v, %v", root, filler)
+	Log.Infof(c, "proofOfBurnTest - %v, %v", root, filler)
 	if root != "" && filler != "" {
 		pob := ProofOfBurnDat{}
 		pob.AddressRoot = root
 		pob.AddressFiller = string(filler[0])
 		address, err := mymath.GenerateProofOfBurnAddress(root, byte(filler[0]))
 		if err != nil {
-			c.Infof("proofOfBurnTest err - %v", err)
+			Log.Infof(c, "proofOfBurnTest err - %v", err)
 			pob.Error = err.Error()
 		}
 		pob.ProofOfBurnAddress = address
